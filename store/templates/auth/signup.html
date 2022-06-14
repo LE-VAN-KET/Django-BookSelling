@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Store Registration</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <div class="home-container">
+      <div class="home-sign-up">
+        <div class="home-form">
+          <h1 class="home-text19">Create a free account</h1>
+          <form action="/registration" method="POST" class="auth-validate-form">
+              {% csrf_token %} {% for field in form %}
+                <div class="form-group registration-form ">
+                  {{ field.label_tag }}
+                  {{ field }} {% if field.help_text %}{% endif %} 
+                  {% for error in field.errors %}
+                    <p style="color: red; font-size: 13px">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              {% endfor %}
+              <button class="button button-signup" type="submit">
+                <span class="home-text09">Sign up</span>
+              </button>
+          </form>
+
+          <span class="home-text10">
+            <span class="home-text11">By signing up you agree to our</span>
+            <span class="home-text12">Terms of Service</span>
+            <span></span>
+            <span class="home-text14">and</span>
+            <span></span>
+            <span class="home-text16">Privacy Policy</span>
+          </span>
+          <a
+            href="/signin"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="home-link"
+          >
+            <span class="home-text17">Already have an account?</span>
+            <span class="home-text18">Login</span>
+          </a>
+        </div>
+
+        <div class="home-imagem">
+          <img src={% static 'images/undraw_invest_88iw.png' %} 
+          alt="image" class="home-image" /> 
+          <img src={% static 'images/patterns-geometricos (13).png' %} 
+          alt="image" loading="lazy" class="home-image1" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
