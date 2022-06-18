@@ -1,0 +1,352 @@
+{% extends 'store/base.html' %} {% load static %} {% load customfunction %} {% block headermenu %} {% block scripts %}
+<script type="text/javascript">
+  $(document).ready(function () {
+    const myslide = document.querySelectorAll('.myslide');
+    const dot = document.querySelectorAll('.dot');
+    let counter = 1;
+    let timer = setInterval(autoSlide, 3000);
+
+    function autoSlide() {
+      counter += 1;
+      slidefun(counter);
+    }
+
+    function plusSlides(n) {
+      counter += n;
+      slidefun(counter);
+      resetTimer();
+    }
+
+    function currentSlide(n) {
+      counter = n;
+      slidefun(counter);
+      resetTimer();
+    }
+
+    function slidefun(n) {
+      let i;
+      for (i = 0; i < myslide.length; i++) {
+        myslide[i].style.display = 'none';
+      }
+      for (i = 0; i < dot.length; i++) {
+        dot[i].className = dot[i].className.replace(' active', '');
+      }
+      if (n > myslide.length) {
+        counter = 1;
+      }
+      if (n < 1) {
+        counter = myslide.length;
+      }
+      myslide[counter - 1].style.display = 'block';
+      dot[counter - 1].className += ' active';
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(autoSlide, 3000);
+    }
+
+    $('.home-banner-top .content .content-left .slider a.prev').on('click', function () {
+      plusSlides(-1);
+    });
+
+    $('.home-banner-top .content .content-left .slider a.next').on('click', function () {
+      plusSlides(-1);
+    });
+
+    $('.home-banner-top .content .content-left .slider .dotsbox span.dot').on('click', function () {
+      currentSlide(1);
+    });
+  });
+</script>
+{% endblock %}
+<div class="header-bottom">
+  <div class="container-fluid">
+    {% comment %}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="responsive categorymenu">
+          {% for p in cat %}
+          <div class="cat-wrapper">
+            <div class="text-center">
+              <a href="{% url 'store:category' id=p.id %}"><img src="{{ p.icon.url }}" /></a>
+              <a href="{% url 'store:category' id=p.id %}">{{ p.name }}</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+    <div class="home-banner-top">
+      <div class="content">
+        <div class="content-left">
+          <div class="slider">
+            <div class="myslide" style="display: block">
+              <img
+                src="https://cdn0.fahasa.com/media/magentothem/banner7/DDAY_main_banner_Slide_840x320.jpg"
+                alt="img-slide"
+              />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="https://cdn0.fahasa.com/media/magentothem/banner7/1980_062022_840x320.png" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="https://cdn0.fahasa.com/media/magentothem/banner7/ThienLong06_840x320.jpg" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="https://cdn0.fahasa.com/media/magentothem/banner7/MCBook_062022_840x320.jpg" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="https://cdn0.fahasa.com/media/magentothem/banner7/alpha_062022_840x320.png" alt="img-slide" />
+            </div>
+            {% comment %}
+            <div class="myslide" style="display: none">
+              <img src="./assets/img/home_slider/slide6.webp" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="./assets/img/home_slider/slide7.webp" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="./assets/img/home_slider/slide8.webp" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: block">
+              <img src="./assets/img/home_slider/slide9.webp" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="./assets/img/home_slider/slide10.webp" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="./assets/img/home_slider/slide11.webp" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="./assets/img/home_slider/slide12.webp" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="./assets/img/home_slider/slide13.webp" alt="img-slide" />
+            </div>
+            <div class="myslide" style="display: none">
+              <img src="./assets/img/home_slider/slide14.webp" alt="img-slide" />
+            </div>
+            {% endcomment %}
+            <a class="prev"
+              ><img
+                src="{% static 'images/home_slider/right.png' %}"
+                alt=""
+                style="width: 32px; height: 56px; transform: rotate(180deg)"
+            /></a>
+            <a class="next"
+              ><img src="{% static 'images/home_slider/right.png' %}" alt="" style="width: 32px; height: 56px"
+            /></a>
+            <div class="dotsbox" style="text-align: center">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              {% comment %} <span class="dot" onclick="currentSlide(6)"></span>
+              <span class="dot" onclick="currentSlide(7)"></span>
+              <span class="dot" onclick="currentSlide(8)"></span>
+              <span class="dot active" onclick="currentSlide(9)"></span>
+              <span class="dot" onclick="currentSlide(10)"></span>
+              <span class="dot" onclick="currentSlide(11)"></span>
+              <span class="dot" onclick="currentSlide(12)"></span>
+              <span class="dot" onclick="currentSlide(13)"></span>
+              <span class="dot" onclick="currentSlide(14)"></span> {% endcomment %}
+            </div>
+          </div>
+        </div>
+        <div class="content-right">
+          {% comment %}
+          <a href="#">
+            <img src="{% static 'images/home_slider/right_content.webp' %}" alt="right-content" />
+          </a>
+          {% endcomment %}
+          <a href="#">
+            <img
+              src="https://cdn0.fahasa.com/media/wysiwyg/Duy-VHDT/Thieu_nhi/thang5/quoctethieunhi_1.1_310x210.jpg"
+              alt="right-content"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block container %}
+
+<div class="row">
+  <div class="col-sm-12 custom-container">
+    <div class="fhs_block" style="margin-top: 24px">
+      <div class="fhs_block_head fhs_center_left">
+        <span class="ico_menu_red" style="margin-right: 8px"></span>
+        <span class="fhs_block_head_title">Danh mục sản phẩm</span>
+      </div>
+      <div class="fhs_block_line">
+        <div></div>
+      </div>
+      <div class="fhs_block_head">
+        <div class="menu_category_block_content_list" style="display: grid; grid-template-columns: repeat(10, 1fr)">
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/Duy-VHDT/Sach-tham-khao.jpg"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/Duy-VHDT/Sach-tham-khao.jpg"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">
+              Sách tham khảo
+            </div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/Duy-VHDT/Sach-hoc-ngoai-ngu.jpg"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/Duy-VHDT/Sach-hoc-ngoai-ngu.jpg"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">
+              Sách học <br />ngoại ngữ
+            </div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/van-hoc.png"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/van-hoc.png"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">Văn học</div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/thieu-nhi.png"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/thieu-nhi.png"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">Thiếu nhi</div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/tam-ly-ky-nang.png"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/tam-ly-ky-nang.png"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">
+              Tâm lý<br />kỹ năng
+            </div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/kinh-te.png"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/kinh-te.png"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">Kinh tế</div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/sach-giao-khoa.png"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/sach-giao-khoa.png"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">
+              Sách giáo khoa
+            </div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/foreign-books.png"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/foreign-books.png"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">
+              Foreign<br />Books
+            </div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/van-phong-pham.png"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/van-phong-pham.png"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">
+              Văn phòng phẩm
+            </div>
+          </a>
+          <a class="fhs_column_center">
+            <img
+              class="lazyloaded"
+              src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/do-choi.png"
+              data-src="https://cdn0.fahasa.com/media/wysiwyg/icon-menu/category/do-choi.png"
+            />
+            <div class="fhs_nowrap_two fhs_center_center" style="margin-top: 16px; font-size: 1.23em">Đồ chơi</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% comment %}
+  <div class="col-sm-12">
+    <div style="margin: 0 auto">
+      <ul id="demo3">
+        {% for sld in slide %}
+        <li><img height="100" src="{{ sld.slideimg.url }}" /></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endcomment %}
+  <div class="col-sm-12 custom-container">
+    <div class="titleheader">
+      <h3 class="h2header text-center">New Published Book</h3>
+      {% comment %} <a href="#">See All</a> {% endcomment %}
+    </div>
+    <div class="regulara sliderzx">
+      {% for item in newbooks %}
+      <div class="book-wrapper text-center" data-book-id="{{ item.id }}">
+        <div class="coverpage">
+          <img src="{{ item.coverpage.url }}" />
+        </div>
+        <a href="#">{{ item.name|text_short }}</a>
+        <a href="#">{{ item.writer }}</a>
+        {% comment %} <a href="{% url 'store:book' id=item.id %}">{{ item.name|text_short }}</a>
+        <a href="{% url 'store:writer' id=item.writer.id %}">{{ item.writer }}</a> {% endcomment %}
+        <div class="rating">
+          {{ item.totalrating|averagerating:item.totalreview }}
+          <span class="totalrating">{{ item.totalreview|add:-1 }}</span>
+        </div>
+        <p>{{ item.price }} $.</p>
+        <button class="btn btn-warning" id="addTocart" data-book-id="{{ item.id }}">
+          <i class="fa fa-shopping-cart"></i>Add to cart
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="col-sm-12 custom-container">
+    <div class="titleheader">
+      <h3 class="h2header text-center">Top Selling Book</h3>
+    </div>
+    <div class="regulara sliderzx">
+      {% for p in newbooks %}
+      <div class="book-wrapper text-center" data-book-id="{{ p.id }}">
+        <div class="coverpage">
+          <img src="{{ p.coverpage.url }}" />
+        </div>
+        <a href="#">{{ p.name|text_short }}</a>
+        <a href="#">{{ p.writer }}</a>
+        {% comment %} <a href="{% url 'store:book' id=p.id %}">{{ p.name|text_short }}</a>
+        <a href="{% url 'store:writer'  id=p.writer.id %}">{{ p.writer }}</a> {% endcomment %}
+        <div class="rating">
+          {{ p.totalrating|averagerating:p.totalreview }}
+          <span class="totalrating">{{ p.totalreview|add:-1 }}</span>
+        </div>
+        <p>${{ p.price }} $.</p>
+        <button class="btn btn-warning" id="addTocart" data-book-id="{{ p.id }}">
+          <i class="fa fa-shopping-cart"></i>Add to cart
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

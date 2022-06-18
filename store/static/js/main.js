@@ -2,16 +2,14 @@ $(window).on('load', function () {
 	$('.pre_loader').fadeOut('slow');
 	$('.pre_loader').remove('slow');
 });
-	
+
 $(document).ready(function () {
 	$("body").on("click", "#addTocart", function (event) {
 		var id = $(this).attr("data-book-id");
+		var quantity = $(".btn-add-cart").data('value');
 		event.preventDefault();
 		$.ajax({
-			url: "../cart/add/" + id,
-			data: {
-				bookid: 1
-			},
+			url: "../cart/add/" + id + '/' + quantity,
 			success: function (data) {
 
 				$("#snackbar").html("Add To Cart");
@@ -25,6 +23,10 @@ $(document).ready(function () {
 		})
 	});
 
+	$(".book-wrapper").on('click', function () {
+		var id = $(this).attr("data-book-id");
+		document.location.href = '/book/' + id;
+	});
 
 	$('#demo3').skdslider({
 		delay: 2000,
@@ -84,42 +86,42 @@ $(document).ready(function () {
 		slidesToShow: 11,
 		slidesToScroll: 11,
 		responsive: [{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 3,
-					infinite: true,
-					dots: false
-				}
-			},
-			{
-				breakpoint: 1000,
-				settings: {
-					slidesToShow: 8,
-					slidesToScroll: 8
-				}
-			},
-			{
-				breakpoint: 800,
-				settings: {
-					slidesToShow: 6,
-					slidesToScroll: 6
-				}
-			},
-			{
-				breakpoint: 600,
-				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 4
-				}
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2
-				}
+			breakpoint: 1200,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3,
+				infinite: true,
+				dots: false
 			}
+		},
+		{
+			breakpoint: 1000,
+			settings: {
+				slidesToShow: 8,
+				slidesToScroll: 8
+			}
+		},
+		{
+			breakpoint: 800,
+			settings: {
+				slidesToShow: 6,
+				slidesToScroll: 6
+			}
+		},
+		{
+			breakpoint: 600,
+			settings: {
+				slidesToShow: 4,
+				slidesToScroll: 4
+			}
+		},
+		{
+			breakpoint: 480,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2
+			}
+		}
 		]
 	});
 
@@ -130,19 +132,19 @@ $(document).ready(function () {
 		slidesToShow: 4,
 		slidesToScroll: 4,
 		responsive: [{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 3
-				}
-			},
-			{
-				breakpoint: 950,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2
-				}
+			breakpoint: 1200,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3
 			}
+		},
+		{
+			breakpoint: 950,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2
+			}
+		}
 		]
 	});
 
@@ -157,7 +159,6 @@ function totalCart() {
 		}
 	})
 }
-
 
 $("input[name='qty']").TouchSpin({
 	min: 1,
