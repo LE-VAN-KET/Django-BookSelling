@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
+    'cart.apps.CartConfig',
+    'search.apps.SearchConfig',
+    'order.apps.OrderConfig',
     'crispy_forms',
     "verify_email.apps.VerifyEmailConfig",
 ]
@@ -152,3 +155,7 @@ EMAIL_HOST_USER = os.environ.get('learningforfuture8888@gmail.com')
 EMAIL_HOST_PASSWORD = os.environ.get('done12345')
 
 DEFAULT_FROM_EMAIL = 'learningforfuture8888@gmail.com'
+
+CART_SESSION_ID = 'cart'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
