@@ -9,7 +9,13 @@ from django.contrib.auth.models import User
 
 
 def home(request):
-    return render(request, 'store/index.html')
+    newpublished = Book.objects.order_by('-created')[:15]
+    slide = Slider.objects.order_by('-created')[:3]
+    context = {
+        "newbooks": newpublished,
+        "slide": slide
+    }
+    return render(request, 'store/index.html', context)
 
 
 def registration(request):
