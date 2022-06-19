@@ -24,6 +24,7 @@ urlpatterns = [
     path('verification/', include('verify_email.urls')),
     path('search/', include('search.urls')),
     path('cart/', include('cart.urls')),
+    path('order/', include('order.urls')),
 ]
 
 if settings.DEBUG:

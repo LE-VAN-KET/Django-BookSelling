@@ -33,7 +33,6 @@ def total_cart(request):
 
 
 def cart_summary(request):
-
     return render(request, 'cart/summary.html')
 
 

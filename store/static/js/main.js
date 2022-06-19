@@ -165,6 +165,7 @@ $("input[name='qty']").TouchSpin({
 	max: 10,
 	verticalbuttons: false
 });
+
 $('article').readmore({
 	speed: 500
 });
