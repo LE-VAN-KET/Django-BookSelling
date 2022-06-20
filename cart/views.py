@@ -29,7 +29,9 @@ def cart_remove(request, bookid):
 
 
 def total_cart(request):
-    return render(request, 'cart/totalcart.html')
+    cart = Cart(request)
+    a = cart.len()
+    return render(request, 'cart/totalcart.html', {"totalcart": a})
 
 
 def cart_summary(request):
@@ -42,3 +44,9 @@ def cart_details(request):
         "cart": cart,
     }
     return render(request, 'cart/cart.html', context)
+
+def cart_get_total_price(request):
+    cart = Cart(request)
+    a = cart.get_total_price()
+
+    return render(request, 'cart/total.html', {"total_price": a})
