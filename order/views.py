@@ -6,6 +6,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from cart.cart import Cart
 from .models import Order, OrderItem
 from .forms import OrderCreateForm
+from .pdfcreator import renderPdf
 
 
 def order_create(request):
@@ -66,3 +67,14 @@ def order_details(request, id):
         "o_item": orderedItem
     }
     return render(request, 'order/details.html', context)
+class pdf(View):
+    def get(self, request, id):
+        try:
+            query=get_object_or_404(Order,id=id)
+        except:
+            Http404('Content not found')
+        context={
+            "order":query
+        }
+        article_pdf = renderPdf('order/pdf.html',context)
+        return HttpResponse(article_pdf,content_type='application/pdf')
