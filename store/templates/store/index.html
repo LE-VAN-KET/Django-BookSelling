@@ -45,6 +45,15 @@
       clearInterval(timer);
       timer = setInterval(autoSlide, 3000);
     }
+    function getTotalCart() {
+      $.ajax({
+        url: '/cart/totalcart',
+        type: 'GET',
+        success: function (data) {
+          $('#gettotalcart').html(data);
+        },
+        });
+      }
 
     $('.home-banner-top .content .content-left .slider a.prev').on('click', function () {
       plusSlides(-1);
@@ -56,6 +65,9 @@
 
     $('.home-banner-top .content .content-left .slider .dotsbox span.dot').on('click', function () {
       currentSlide(1);
+    });
+    $('.addtc').on('click', function(){
+      getTotalCart();
     });
   });
 </script>
@@ -301,22 +313,26 @@
     </div>
     <div class="regulara sliderzx">
       {% for item in newbooks %}
-      <div class="book-wrapper text-center" data-book-id="{{ item.id }}">
+      <div class="book-wrapper text-center d-flex flex-column justify justify-content-between" data-book-id="{{ item.id }}">
         <div class="coverpage">
           <img src="{{ item.coverpage.url }}" />
         </div>
-        <a href="#">{{ item.name|text_short }}</a>
-        <a href="#">{{ item.writer }}</a>
-        {% comment %} <a href="{% url 'store:book' id=item.id %}">{{ item.name|text_short }}</a>
-        <a href="{% url 'store:writer' id=item.writer.id %}">{{ item.writer }}</a> {% endcomment %}
-        <div class="rating">
-          {{ item.totalrating|averagerating:item.totalreview }}
-          <span class="totalrating">{{ item.totalreview|add:-1 }}</span>
+        <div>
+          <a href="#">{{ item.name|text_short }}</a>
+          <a href="#">{{ item.writer }}</a>
         </div>
-        <p>{{ item.price }} $.</p>
-        <button class="btn btn-warning" id="addTocart" data-book-id="{{ item.id }}">
-          <i class="fa fa-shopping-cart"></i>Add to cart
-        </button>
+        <div>
+          {% comment %} <a href="{% url 'store:book' id=item.id %}">{{ item.name|text_short }}</a>
+          <a href="{% url 'store:writer' id=item.writer.id %}">{{ item.writer }}</a> {% endcomment %}
+          <div class="rating">
+            {{ item.totalrating|averagerating:item.totalreview }}
+            <span class="totalrating">{{ item.totalreview|add:-1 }}</span>
+          </div>
+          <p>{{ item.price }} $.</p>
+          <button class="btn btn-warning addtc" id="addTocart" data-book-id="{{ item.id }}">
+            <i class="fas fa-cart-plus"></i> Add to cart
+          </button>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -328,22 +344,26 @@
     </div>
     <div class="regulara sliderzx">
       {% for p in newbooks %}
-      <div class="book-wrapper text-center" data-book-id="{{ p.id }}">
+      <div class="book-wrapper text-center d-flex flex-column justify justify-content-between" data-book-id="{{ p.id }}">
         <div class="coverpage">
           <img src="{{ p.coverpage.url }}" />
         </div>
-        <a href="#">{{ p.name|text_short }}</a>
-        <a href="#">{{ p.writer }}</a>
-        {% comment %} <a href="{% url 'store:book' id=p.id %}">{{ p.name|text_short }}</a>
-        <a href="{% url 'store:writer'  id=p.writer.id %}">{{ p.writer }}</a> {% endcomment %}
-        <div class="rating">
-          {{ p.totalrating|averagerating:p.totalreview }}
-          <span class="totalrating">{{ p.totalreview|add:-1 }}</span>
+        <div>
+          <a href="#">{{ p.name|text_short }}</a>
+          <a href="#">{{ p.writer }}</a>
         </div>
-        <p>${{ p.price }} $.</p>
-        <button class="btn btn-warning" id="addTocart" data-book-id="{{ p.id }}">
-          <i class="fa fa-shopping-cart"></i>Add to cart
-        </button>
+        <div>
+          {% comment %} <a href="{% url 'store:book' id=p.id %}">{{ p.name|text_short }}</a>
+          <a href="{% url 'store:writer'  id=p.writer.id %}">{{ p.writer }}</a> {% endcomment %}
+          <div class="rating">
+            {{ p.totalrating|averagerating:p.totalreview }}
+            <span class="totalrating">{{ p.totalreview|add:-1 }}</span>
+          </div>
+          <p>${{ p.price }} $.</p>
+          <button class="btn btn-warning addtc" id="addTocart" data-book-id="{{ p.id }}">
+            <i class="fas fa-cart-plus"></i> Add to cart
+          </button>
+        </div>
       </div>
       {% endfor %}
     </div>
