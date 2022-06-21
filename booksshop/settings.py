@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
+    'cart.apps.CartConfig',
+    'search.apps.SearchConfig',
+    'order.apps.OrderConfig',
     'crispy_forms',
     "verify_email.apps.VerifyEmailConfig",
 ]
@@ -68,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.context_processors.sidebar',
             ],
         },
     },
@@ -84,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bookstore',
         'USER': 'root',
-        'PASSWORD': 'Ket0328560055',
+        'PASSWORD': 'Admin123',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
@@ -136,10 +140,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # configuration email
@@ -151,3 +156,7 @@ EMAIL_HOST_USER = os.environ.get('learningforfuture8888@gmail.com')
 EMAIL_HOST_PASSWORD = os.environ.get('done12345')
 
 DEFAULT_FROM_EMAIL = 'learningforfuture8888@gmail.com'
+
+CART_SESSION_ID = 'cart'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

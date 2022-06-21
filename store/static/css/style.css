@@ -1,8 +1,16 @@
 /* Pre loader*/
 body {
-  overflow-x: hidden;
+  background-color: #f4f4f4;
 }
 
+.custom-container {
+  background-color: #fff;
+  margin-bottom: 12px;
+}
+
+.grid-layout {
+  width: 1240px;
+}
  .loader{
     position: absolute;
     top: 0;
@@ -12,6 +20,7 @@ body {
     width: 60px;
     height: 60px;
     margin: auto;
+    
 }
 .loader div{
     border-radius: 50%;
@@ -134,7 +143,6 @@ ul.sub-menu {
     transform: translateY(0);
   }
 }
-
 .cart, .profile{
 	background: #14243a;
 	padding: 10px;
@@ -148,10 +156,7 @@ ul.sub-menu {
 /*============ category menu*/
 .header-bottom {
   padding:0;
-  border-bottom: 1px solid #D5D5D5;
-  border-top: 1px solid #D5D5D5;
   overflow: hidden;
-  
 }
 .categorymenu{
   width: 100%;
@@ -185,8 +190,8 @@ ul.sub-menu {
   text-decoration: underline;
 }
 .cat-wrapper img{
-  max-height: 50px;
-  max-width: 50px;
+  max-height: 80px;
+  max-width: 80px;
   display: block;
   margin: auto;
 }
@@ -208,11 +213,17 @@ ul.sub-menu {
   margin: 20px auto;
 }
 .book-wrapper{
-  max-width: 250px;
-  margin: 10px;
+  max-width: 225px;
+  height: 400px !important;
+  /* margin: 10px; */
   border: 1px solid #efefef;
-  padding: 10px;
+  padding: 20px;
   display: inline-block;
+  cursor: pointer;
+}
+.book-wrapper:hover{
+  transition: transform .3s;
+  transform: scale(1.1);
 }
 .book-wrapper .btn{
   width: 80%;
@@ -309,7 +320,7 @@ td a i {
 .registration-form input{
     display: block;
     width: 100%;
-    height: calc(1.8rem + 2px);
+    height: calc(2.25rem + 2px);
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -350,13 +361,9 @@ td a i {
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
+  background: #f0c14b; 
   margin: 8px 0;
-  border: 1px solid #38D39F;
-  background-color: #46e6b0;
-  border-radius: 3px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  box-sizing:border-box;
+  border: 1px solid #c19a39;
 }
 .signin-form .btn-default{
   background: #e7e9ec;
@@ -402,7 +409,6 @@ td a i {
 /*============ Book Details*/
 .view-details {
   position: relative;
-  border: 1px solid #F7F7F0;
   padding:25px;
   overflow: hidden;
   margin-top: 10px;
@@ -483,7 +489,6 @@ ul.pages>li>img{
 }
 
 .product-information, .pricebox{
-  border: 1px solid #F7F7F0;
   padding:25px;
   margin-top: 10px;
 }
@@ -494,6 +499,9 @@ ul.pages>li>img{
 .rating-stars ul, .review-stars ul {
   list-style-type:none;
   padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
 }
 .rating-stars ul > li.star {
   display:inline-block;
@@ -544,7 +552,7 @@ ul.pages>li>img{
   max-width:75px;
 }
 .cart_quantity{
-  width: 130px;
+  max-width: 100px;
 }
 .cart_quantity input{
   height: 30px;
@@ -722,6 +730,215 @@ ul.pages>li>img{
 .footer_paymentmethod img{
   height:50px;
   background:#ffffff
+}
+
+
+/*New*/
+.home-banner-top {
+  overflow: hidden;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 1270px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.home-banner-top .content {
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.home-banner-top .content .content-left {
+  width: 824px;
+  height: 274px;
+  border-radius: 4px;
+}
+.home-banner-top .content .content-left .slider {
+  position: relative;
+  width: 824px;
+  height: 274px;
+}
+.home-banner-top .content .content-left .slider .myslide {
+  width: 824px;
+  height: 274px;
+  display: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.home-banner-top .content .content-left .slider .myslide img {
+  width: 100%;
+  border-radius: 4px;
+  height: 274px;
+}
+.home-banner-top .content .content-left .slider a.prev {
+  height: 55px;
+  text-align: center;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.home-banner-top .content .content-left .slider a.next {
+  right: 0;
+  height: 55px;
+  text-align: center;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+.home-banner-top .content .content-left .slider .next, .home-banner-top .content .content-left .slider .prev {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  font-size: 40px;
+  font-weight: 100;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.1s;
+  user-select: none;
+  opacity: 0.3;
+}
+.home-banner-top .content .content-left .slider .dotsbox {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 10px;
+  cursor: pointer;
+}
+.home-banner-top .content .content-left .slider .dotsbox span.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  margin: 0 2px;
+  bottom: 0;
+  cursor: pointer;
+}
+.home-banner-top .content .content-left .slider .dotsbox span.dot.active {
+  border-color: #08f e3;
+}
+.home-banner-top .content .content-left .slider .dotsbox .active, .home-banner-top .content .content-left .slider .dotsbox .dot:hover {
+  border-color: #0785f3 e3;
+}
+.home-banner-top .content .content-left .slider:hover .prev {
+  opacity: 1;
+}
+.home-banner-top .content .content-left .slider:hover .next {
+  opacity: 1;
+}
+.home-banner-top .content .content-right {
+  width: 408px;
+  height: 274px;
+}
+.home-banner-top .content .content-right a img {
+  border-radius: 4px;
+  height: 274px;
+}
+
+/* Danh muc */
+.fhs_block>.fhs_block_head {
+  padding: 16px;
+}
+
+.fhs_column_center {
+  display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.fhs_nowrap_two {
+  line-height: 1.4em;
+  word-break: break-word;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: 2.8em;
+  max-height: 2.8em;
+}
+
+.fhs_center_center {
+  display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.fhs_block>.fhs_block_head>.fhs_block_head_title {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #212121;
+  letter-spacing: 0px;
+}
+
+/* .ico_menu_red {
+  background: url(https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_menu_red.svg) no-repeat center center;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  height: 32px;
+  width: 32px;
+} */
+
+.book-price {
+  display: block;
+  margin: 10px 0;
+  color: rgb(255, 66, 78);
+  font-size: 32px;
+  line-height: 40px;
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+.introduce-span {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.form-control {
+  text-align: center;
+  padding: 0;
+}
+
+.icon-ic_shopping-cart {
+  display: block;
+  font-size: 25px;
+  color: #f15c22;
+  float: left;
+}
+
+.decorator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.decorator ul {
+  list-style-type: none;
+  padding: 10px;
+  border: 2px solid #f4f4f4;
+}
+
+.decorator li {
+  margin: 20px 10px 0 10px;
+}
+
+.decorator p {
+  display: inline-block;
+}
+
+.decorator i {
+  margin-right: 5px;
 }
 
 /* custome css signup */
