@@ -1,0 +1,34 @@
+{% load customfunction %}
+<ul class="list-group">
+	<li class="list-group-item d-flex justify-content-between align-items-center"><h4>Checkout Summary</h4></li>
+	<li class="list-group-item d-flex justify-content-between align-items-center">Books<span id="totalcart"></span></li>
+	<li class="list-group-item d-flex justify-content-between align-items-center">Subtotal<span id="total_price"> $.</span></li>
+	<li class="list-group-item d-flex justify-content-between align-items-center">Shipping<span>{{ cost|shipping }} $.</span></li>
+	<li class="list-group-item d-flex justify-content-between align-items-center">Payable Total<span id="payable"> $.</span></li>
+</ul>	
+{% block scripts %}
+<script type="text/javascript">
+	$(document).ready(function () {
+		getData();
+	  });
+  function getData() {
+    $.ajax({
+      url: 'get_total_price',
+      type: 'GET',
+      success: function (data) {
+        $('#total_price').html(data);
+		b = data.split('$.');
+		c = parseFloat(b) + 100 + '$.'
+		$('#payable').html(c);
+      },
+    });
+	$.ajax({
+		url: 'totalcart',
+		type: 'GET',
+		success: function (data) {
+		  $('#totalcart').html(data);
+		},
+	  });
+  }
+</script>
+{% endblock %}

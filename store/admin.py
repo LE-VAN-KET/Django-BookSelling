@@ -1,41 +1,35 @@
 from django.contrib import admin
-from .models import Category, Book, Publisher, Author, BookCategory
+from .models import Category, Writer, Book, Slider
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'parent']
-    prepopulated_fields = {'slug': ('name',)}
-
-
-admin.site.register(Category, CategoryAdmin)
-
-
-class PublisherAdmin(admin.ModelAdmin):
+class AdminCategory(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
 
 
-admin.site.register(Publisher, PublisherAdmin)
+admin.site.register(Category, AdminCategory)
 
 
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'create_at', 'update_at']
+class AdminWriter(admin.ModelAdmin):
+    list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
 
 
-admin.site.register(Author, AuthorAdmin)
+admin.site.register(Writer, AdminWriter)
 
 
-class BookAdmin(admin.ModelAdmin):
-    list_display = ['name', 'price', 'quantity',
-                    'total_review', 'rating', 'state',
-                    'author', 'author', 'publisher',
-                    'sold_quantity', 'public_year',
-                    'language', 'weight', 'discount']
-
-    list_filter = ['state']
-    list_editable = ['price', 'quantity', 'state']
+class AdminBook(admin.ModelAdmin):
+    list_display = ['name', 'price', 'stock', 'status', 'created', 'updated']
+    list_filter = ['status', 'created', 'updated']
+    list_editable = ['price', 'stock', 'status']
     prepopulated_fields = {'slug': ('name',)}
 
 
-admin.site.register(Book, BookAdmin)
+admin.site.register(Book, AdminBook)
+
+
+class AdminSlider(admin.ModelAdmin):
+    list_display = ['title', 'created', 'updated']
+
+
+admin.site.register(Slider, AdminSlider)
